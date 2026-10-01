@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>如果你来过 · teaser studio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Shantell+Sans:wght@800&display=block">
+<style>
+  /* Local copies so the teaser renders offline; the brush font is cut down to the characters the teaser uses
+     (see assets/fonts/README.md to add more). */
+  @font-face { font-family: "Ma Shan Zheng Local"; src: url("assets/fonts/MaShanZheng-teaser.woff2") format("woff2"); font-display: block; }
+  @font-face { font-family: "Permanent Marker"; src: url("assets/fonts/PermanentMarker-Regular.ttf") format("truetype"); font-display: block; }
+  html, body { margin: 0; background: #1b1820; color: #eee; font: 13px system-ui, sans-serif; }
+  main { padding: 12px; display: grid; gap: 8px; }
+  #out { width: min(100%, 1280px); aspect-ratio: 16 / 9; height: auto; background: #F3EBDC; }
+  .p5Canvas { display: none !important; }
+  .bar { display: flex; gap: 10px; align-items: center; max-width: 1280px; }
+  #scrub { flex: 1; }
+  #tt { font-variant-numeric: tabular-nums; min-width: 190px; }
+</style>
+<script>window.SONG = { name: 'ruguo', bpm: 132, off: 1.81818, dur: 91.14, audio: 'assets/ruguo_teaser.mp3', wipes: [], meter: [], lyricFont: '58px "Ma Shan Zheng Local", "Ma Shan Zheng", serif', lyricDy: 2, fonts: [['58px "Ma Shan Zheng Local"', '如']], singers: { F: '#F49AB0', M: '#F39A5B', B: '#F6D36B' } };</script>
+<script src="node_modules/p5/lib/p5.min.js"></script>
+<script src="node_modules/p5.brush/dist/p5.brush.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="out" width="1920" height="1080"></canvas>
+  <div class="bar"><input id="scrub" type="range" min="0" max="91.14" step="0.0417" value="0"><span id="tt">loading…</span></div>
+</main>
+<script src="src/core.js"></script>
+<script src="src/clawd.js"></script>
+<script src="src/cast.js"></script>
+<script src="src/props.js"></script>
+<script src="src/teaser/lyrics.js"></script>
+<script src="src/timeline.js"></script>
+<script>const CAST = {};</script>
+<script src="src/teaser/kit.js"></script>
+<script src="src/teaser/t0_night.js"></script>
+<script src="src/teaser/t1_writing.js"></script>
+<script src="src/teaser/t2_paintings.js"></script>
+<script src="src/teaser/t3_coast.js"></script>
+</body>
+</html>

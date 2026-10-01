@@ -5,6 +5,7 @@
 //   node render.mjs --frames=0:156.6 --workers=4                                full-res JPEG frames → out/frames (resumable)
 //   node render.mjs --encode [--out=out/pdoom.mp4]                               frames + song → MP4
 //   Every mode takes --page=<file>.html; the page's inline window.SONG gives the length, soundtrack and frames folder.
+//   --lowres paints at half resolution for quick previews on machines without a GPU.
 //   node render.mjs --loop=recursion [--out=out/loop_recursion]                 one cycle of a standalone loop (PNGs)
 //   (--loop also works with --sheet, where the times are loop time)
 import puppeteer from 'puppeteer-core';
@@ -46,7 +47,7 @@ async function openPage(tag = '') {
   const page = await browser.newPage();
   page.on('console', m => { if (['error', 'warn'].includes(m.type())) console.log(`[page${tag}]`, m.text()); });
   page.on('pageerror', e => console.log(`[page error${tag}]`, e.message));
-  await page.goto(pathToFileURL(resolve(PAGE)).href + '?render', { waitUntil: 'networkidle0' });
+  await page.goto(pathToFileURL(resolve(PAGE)).href + '?render' + (args.lowres ? '&lowres' : ''), { waitUntil: 'networkidle0' });
   await page.waitForFunction('window.ready === true', { timeout: 60000 });
   if (args.loop) await page.evaluate(name => { window.LOOP = LOOPS[name]; }, args.loop);
   return page;

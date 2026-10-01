@@ -10,12 +10,15 @@
 // mouth ('smile','o','O','flat','wobble','grin'), aL/aR, dy/sq/rot/flip (as Clawd), walk (phase, like Clawd), run (phase),
 // sit, back (seen from behind), hairUp (0..1, hair stands on end), glassesTilt, bowtie, blush, coat/pants colours,
 // emote/emoteK (as Clawd), spin (0..1 turn, squashes x), draw/handL/handR hooks.
+// Her look in the 《如果你来过》 teaser (all off by default): hair 'long' (loose, past the shoulders; o.hairSwing sways it),
+// top 'sweater' (a knit top in o.sweater instead of the lab coat), lashes.
 
 const SKIN = '#F2C4A0', HAIR = '#3A2B38', COAT = '#FBF4E6', PANTS = '#3D4A7A';
 
 function researcher(x, y, s, o = {}) {
   const sw = clamp(s / 13, .45, 2.2), J = s * .05, sq = (o.sq || 0) + (o.take || 0);
-  const coat = o.coat || COAT, pants = o.pants || PANTS;
+  const knit = o.top === 'sweater', coat = knit ? (o.sweater || '#B9A6D9') : (o.coat || COAT), pants = o.pants || PANTS;
+  const long = o.hair === 'long', sway = (o.hairSwing || 0) * s;
   if (!o.noShadow) paint(ellPts(x, y + s * .1, s * 3.2, s * .7, 18), { fill: PAL.ink, fillOp: 80, bleed: .2, tex: .3, border: .1, ink: null });
 
   push();
@@ -35,11 +38,13 @@ function researcher(x, y, s, o = {}) {
     pop();
   };
   leg(-1, 0); leg(1, 1);
+  if (long && !o.back) paint(longHairPts(s, sway), { wash: HAIR, fill: PAL.violet, fillOp: 40, tex: .6, ink: PAL.ink, sw: sw * .7, curv: .5 });
 
   // arms behind the coat edge
   const arm = (side, a, hook) => {
     push(); translate(side * 1.75 * s, -7.6 * s); rotate(side < 0 ? a : -a);
-    paint(rectPts(side < 0 ? -3 * s : 0, -.44 * s, 3 * s, .88 * s, J), { wash: coat, fill: PAL.sky, fillOp: 45, tex: .5, ink: PAL.ink, sw: sw * .7 });
+    paint(rectPts(side < 0 ? -3 * s : 0, -.44 * s, 3 * s, .88 * s, J), { wash: coat, fill: knit ? PAL.violet : PAL.sky, fillOp: 45, tex: .5, ink: PAL.ink, sw: sw * .7 });
+    if (knit) inkLine([[side * 2.55 * s, -.44 * s], [side * 2.55 * s, .44 * s]], sw * .5, PAL.ink, 'inkfine', 0);   // cuff
     translate(side * 3.2 * s, 0);
     paint(ellPts(0, 0, .55 * s, .55 * s, 12), { wash: SKIN, ink: PAL.ink, sw: sw * .6 });
     if (hook) { if (side < 0) scale(-1, 1); hook(s, sw); }
@@ -47,10 +52,15 @@ function researcher(x, y, s, o = {}) {
   };
   arm(-1, o.aL ?? -1.25, o.handL); arm(1, o.aR ?? -1.25, o.handR);
 
-  // coat
-  const coatPts = [[-1.95 * s, -8.2 * s], [1.95 * s, -8.2 * s], [2.45 * s, -2.1 * s], [-2.45 * s, -2.1 * s]];
-  paint(coatPts, { wash: coat, fill: PAL.sky, fillOp: 60, bleed: .08, tex: .7, border: .6, ink: null });
-  if (!o.back) {
+  // coat (or her sweater: shorter and rounder, ribbed hem, round neck)
+  const coatPts = knit ? [[-1.9 * s, -8.25 * s], [1.9 * s, -8.25 * s], [2.35 * s, -6.8 * s], [2.5 * s, -2.7 * s], [-2.5 * s, -2.7 * s], [-2.35 * s, -6.8 * s]]
+    : [[-1.95 * s, -8.2 * s], [1.95 * s, -8.2 * s], [2.45 * s, -2.1 * s], [-2.45 * s, -2.1 * s]];
+  paint(coatPts, { wash: coat, fill: knit ? PAL.violet : PAL.sky, fillOp: 60, bleed: .08, tex: .7, border: .6, ink: null });
+  if (knit) {
+    inkLine([[-2.45 * s, -3.4 * s], [2.45 * s, -3.4 * s]], sw * .5, PAL.ink, 'inkfine', .2);
+    for (let i = -5; i <= 5; i++) inkLine([[i * .45 * s, -3.3 * s], [i * .45 * s, -2.8 * s]], sw * .35, mixCol(coat, PAL.ink, .45), 'inkfine', 0);
+    if (!o.back) inkLine([[-.85 * s, -8.25 * s], [0, -7.75 * s], [.85 * s, -8.25 * s]], sw * .55, PAL.ink, 'inkfine', .6);
+  } else if (!o.back) {
     paint([[-.8 * s, -8.2 * s], [.8 * s, -8.2 * s], [0, -6.4 * s]], { wash: o.shirt || PAL.teal, ink: null });            // shirt V
     inkLine([[-.8 * s, -8.2 * s], [0, -6.3 * s], [.8 * s, -8.2 * s]], sw * .6, PAL.ink, 'inkfine', 0);                   // lapels
     inkLine([[0, -6.3 * s], [0, -2.2 * s]], sw * .5, PAL.ink, 'inkfine', 0);                                             // coat split
@@ -67,8 +77,21 @@ function researcher(x, y, s, o = {}) {
   paint(rectPts(-.45 * s, -8.9 * s, .9 * s, .9 * s), { wash: SKIN, ink: null });                                          // neck
   paint(ellPts(hx, hy, R, R * .97, 26, J * .6), { wash: SKIN, fill: '#E9A98A', fillOp: 50, tex: .6, border: .5, ink: PAL.ink, sw: sw * .85 });
   const up = clamp(o.hairUp || 0);
-  if (o.back) {
+  if (o.back && long) {
+    paint(longHairPts(s, sway, true), { wash: HAIR, fill: PAL.violet, fillOp: 40, tex: .6, ink: PAL.ink, sw: sw * .8, curv: .5 });
+    for (const k of [-1, 0, 1]) inkLine([[k * .7 * s, -12.4 * s], [k * 1.1 * s + sway * .5, -8 * s], [k * 1.2 * s + sway, -6.6 * s]], sw * .4, mixCol(HAIR, PAL.violet, .5), 'inkfine', .5);
+  } else if (o.back) {
     paint(ellPts(hx, hy - .1 * s, R * 1.04, R * 1.0, 24, J), { wash: HAIR, fill: PAL.violet, fillOp: 40, tex: .6, ink: PAL.ink, sw: sw * .8 });
+  } else if (long) {
+    // crown with soft side-swept bangs, and a lock falling in front of each shoulder
+    const hp = [];
+    for (let i = 0; i <= 12; i++) { const a = Math.PI * 1.04 + i / 12 * Math.PI * .92; hp.push([hx + Math.cos(a) * R * 1.1, hy + Math.sin(a) * R * 1.08]); }
+    hp.push([2.15 * s, -10.6 * s], [1.5 * s, -11.6 * s], [.4 * s, -12.0 * s], [-.9 * s, -11.5 * s], [-1.8 * s, -10.9 * s], [-2.25 * s, -10.2 * s]);
+    paint(hp, { wash: HAIR, fill: PAL.violet, fillOp: 40, tex: .6, ink: PAL.ink, sw: sw * .7, curv: .4 });
+    for (const sd of [-1, 1]) paint([[sd * 1.95 * s, -11.4 * s], [sd * 2.55 * s, -10.2 * s], [sd * 2.45 * s + sway, -8.1 * s], [sd * 2.05 * s + sway, -7.3 * s], [sd * 1.75 * s, -9.4 * s]],
+      { wash: HAIR, fill: PAL.violet, fillOp: 40, tex: .6, ink: PAL.ink, sw: sw * .6, curv: .5 });
+    if (o.blush) for (const bx of [-1.55, 1.55]) paint(ellPts(bx * s, -9.9 * s, .55 * s, .3 * s, 12), { fill: PAL.rose, fillOp: 160, bleed: .2, ink: null });
+    rFace(s, sw, o);
   } else {
     // hair cap with bangs, plus a tuft that stands up when scared
     const hp = [];
@@ -103,6 +126,10 @@ function rFace(s, sw, o) {
     else if (e === 'x') { inkLine([[cx - .3 * s, cy - .3 * s], [cx + .3 * s, cy + .3 * s]], sw * .7, PAL.ink, 'ink', 0); inkLine([[cx + .3 * s, cy - .3 * s], [cx - .3 * s, cy + .3 * s]], sw * .7, PAL.ink, 'ink', 0); }
     else if (e === 'heart') paint(heartPts(cx, cy, .45 * s), { wash: '#E2476E', ink: null });
     else if (e === 'swirl') { const sp = []; for (let k = 0; k < 14; k++) { const a = k * .8 + T * 7 * side, r = k * .05 * s; sp.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]); } inkLine(sp, sw * .5, PAL.ink, 'inkfine', .6); }
+    if (o.lashes && e !== 'star' && e !== 'heart') {
+      const ey = e === 'closed' ? cy + .05 * s : cy - .12 * s;
+      inkLine([[cx + side * .24 * s + lx, ey], [cx + side * .46 * s + lx, ey - .2 * s]], sw * .55, PAL.ink, 'inkfine', 0);
+    }
     brush.noFill(); brush.noWash(); brush.noHatch(); brush.set('inkfine', PAL.ink, sw * .9);
     brush.beginShape(0); for (const p of ellPts(cx, cy, .82 * s, .8 * s, 18)) brush.vertex(p[0], p[1]); brush.endShape(true);
   }
@@ -123,6 +150,13 @@ function rFace(s, sw, o) {
   else if (m === 'flat') inkLine([[-.45 * s, my], [.45 * s, my]], sw * .7, PAL.ink, 'ink', 0);
   else if (m === 'wobble') inkLine([[-.7 * s, my], [-.35 * s, my - .18 * s], [0, my], [.35 * s, my - .18 * s], [.7 * s, my]], sw * .6, PAL.ink, 'ink', .3);
   else if (m === 'grin') paint([[-.8 * s, my - .15 * s], [.8 * s, my - .15 * s], [.5 * s, my + .5 * s], [-.5 * s, my + .5 * s]], { wash: '#6A2A35', ink: PAL.ink, sw: sw * .5, curv: .4 });
+}
+
+// Long loose hair: a soft mass from the crown to below the shoulders (back = true covers the whole back of the head).
+function longHairPts(s, sway = 0, back = false) {
+  const b = back ? -6.3 : -6.9;
+  return [[-2.2 * s, -12.3 * s], [0, -13.35 * s], [2.2 * s, -12.3 * s], [2.75 * s, -10.3 * s], [2.8 * s + sway, -8.2 * s], [2.6 * s + sway, b * s],
+    [1.2 * s + sway * .6, (b + .35) * s], [0, (b + .1) * s], [-1.2 * s + sway * .6, (b + .35) * s], [-2.6 * s + sway, b * s], [-2.8 * s + sway, -8.2 * s], [-2.75 * s, -10.3 * s]];
 }
 
 function researcherDancer(x, y, s, style, t, extra = {}) { const m = move(style, t, extra.seed || 0); researcher(x + m.dx * s, y, s, { ...m, walk: undefined, ...extra }); }

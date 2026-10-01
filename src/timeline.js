@@ -8,10 +8,10 @@ const CH = [];
 function chapter(name, start, end, shots) { CH.push({ name, start, end, shots }); CH.sort((a, b) => a.start - b.start); }
 
 // Chapter breaks that get a brush wipe (cover by the boundary, reveal after it).
-const WIPES = [1.5, 38.5, 73.0, 109.4];
+const WIPES = SONG.wipes ?? [1.5, 38.5, 73.0, 109.4];
 const WIPE_TR = .3;
 
-const METER = [[23, 35.5, 8, 34], [59, 69.9, 34, 61], [95.4, 105.4, 61, 86], [123.5, 132, 86, 99.9]];
+const METER = SONG.meter ?? [[23, 35.5, 8, 34], [59, 69.9, 34, 61], [95.4, 105.4, 61, 86], [123.5, 132, 86, 99.9]];
 // P(doom) at time t: climbs in pump-sized steps on each beat during the chorus windows, holds in between.
 function pdoomAt(t) {
   let v = 5;
@@ -90,29 +90,48 @@ function wipe(p, idx) {
 }
 
 // ---------- karaoke ----------
+// A lyric is [start, end, text] or [start, end, text, singer, charTimes]. singer picks the highlight colour from
+// SONG.singers (e.g. { F: rose, M: clay, B: gold }); charTimes, one start time per character, paces the highlight
+// for lines with no spaces (Chinese). Without them the highlight sweeps word by word at a steady rate.
+const LYRIC_FONT = SONG.lyricFont || '800 50px "Shantell Sans", sans-serif';
 function karaoke(t) {
   const L = LY.find(l => t >= l[0] && t < l[1]); if (!L) return;
   const [a, b, txt] = L;
-  outX.font = '800 50px "Shantell Sans", sans-serif';
+  outX.font = LYRIC_FONT;
   const tw = outX.measureText(txt).width, grow = easeOut((t - a) / .18) * (1 - ease((t - (b - .12)) / .12));
   if (grow < .02) return;
   const w = (tw + 110) * grow, x0 = 960 - w / 2, y0 = 978;
   const pts = [[x0 + jit(8), y0 + jit(4)], [x0 + w / 2, y0 - 4 + jit(4)], [x0 + w + jit(8), y0 + jit(4)], [x0 + w + 14 + jit(8), y0 + 44], [x0 + w + jit(8), y0 + 88 + jit(4)], [x0 + w / 2, y0 + 92 + jit(4)], [x0 + jit(8), y0 + 88 + jit(4)], [x0 - 14 + jit(8), y0 + 44]];
   paint(pts, { wash: PAL.ink, washOp: 225, fill: PAL.violet, fillOp: 60, tex: .7, border: .4, ink: null });
-  KARAOKE = { a, b, txt, grow };
+  KARAOKE = { a, b, txt, grow, who: L[3], ct: L[4] };
 }
 function drawKaraokeText(c) {
   if (!KARAOKE || KARAOKE.grow < .85) return;
-  const { a, b, txt } = KARAOKE, t = T;
-  c.font = '800 50px "Shantell Sans", sans-serif'; c.textBaseline = 'middle'; c.textAlign = 'left';
+  const { a, b, txt, who, ct } = KARAOKE, t = T, hi = (SONG.singers || {})[who] || PAL.ochre;
+  c.font = LYRIC_FONT; c.textBaseline = 'middle'; c.textAlign = 'left';
+  const y = 1022 + (SONG.lyricDy || 0);
+  if (ct) {
+    // per character: each lights up from its own start time, filling over the gap to the next one (at most .35 s)
+    const ch = [...txt], ws = ch.map(k => c.measureText(k).width), total = ws.reduce((p, q) => p + q, 0);
+    let x = 960 - total / 2, j = 0;
+    ch.forEach((k, i) => {
+      const isMark = /[\s，。、？！…—「」《》,.?!]/.test(k), t0 = isMark ? null : ct[j], t1 = isMark ? null : (ct[j + 1] ?? t0 + .35);
+      if (!isMark) j++;
+      const f = isMark ? (j > 0 && t >= ct[j - 1] + .2 ? 1 : 0) : clamp((t - t0) / Math.min(.35, Math.max(.08, t1 - t0)));
+      c.fillStyle = PAL.cream; c.fillText(k, x, y);
+      if (f > 0) { c.save(); c.beginPath(); c.rect(x - 2, y - 44, ws[i] * f + 2, 88); c.clip(); c.fillStyle = hi; c.fillText(k, x, y); c.restore(); }
+      x += ws[i];
+    });
+    return;
+  }
   const words = txt.split(' '), sp = c.measureText(' ').width, ws = words.map(w => c.measureText(w).width);
   const total = ws.reduce((p, q) => p + q, 0) + sp * (words.length - 1);
   const singDur = Math.min(b - a - .1, .45 + txt.length * .075), sung = clamp((t - a) / singDur) * txt.replace(/ /g, '').length;
-  let x = 960 - total / 2, done = 0; const y = 1022;
+  let x = 960 - total / 2, done = 0;
   words.forEach((w, i) => {
     const f = clamp((sung - done) / w.length); done += w.length;
     c.fillStyle = PAL.cream; c.fillText(w, x, y);
-    if (f > 0) { c.save(); c.beginPath(); c.rect(x - 2, y - 40, ws[i] * f + 2, 80); c.clip(); c.fillStyle = PAL.ochre; c.fillText(w, x, y); c.restore(); }
+    if (f > 0) { c.save(); c.beginPath(); c.rect(x - 2, y - 40, ws[i] * f + 2, 80); c.clip(); c.fillStyle = hi; c.fillText(w, x, y); c.restore(); }
     x += ws[i] + sp;
   });
 }

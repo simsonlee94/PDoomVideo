@@ -1,6 +1,8 @@
 // core.js: constants, helpers, paper, paint wrapper, compositing and render hooks.
 const W = 1920, H = 1080;
-const BPM = 88, BEAT = 60 / BPM, OFF = 0.21, BOIL = 12, DUR = 156.6;
+// The studio page can declare its song before this file loads (window.SONG); the defaults are the P(doom) video's.
+const SONG = Object.assign({ bpm: 88, off: 0.21, dur: 156.6 }, window.SONG);
+const BPM = SONG.bpm, BEAT = 60 / BPM, OFF = SONG.off, BOIL = 12, DUR = SONG.dur;
 const TAU = Math.PI * 2;
 const PAL = {
   paper: '#F3EBDC', ink: '#2B2233', clay: '#D97757', clayDk: '#A84D33', clayLt: '#F2A283',
@@ -180,11 +182,14 @@ function defineBrushes() {
 
 // ---------- frame ----------
 async function setup() {
-  createCanvas(W, H, WEBGL); pixelDensity(1); noLoop();
+  // ?lowres paints at half resolution: a quick preview for machines without a GPU (the final render never uses it).
+  createCanvas(W, H, WEBGL); pixelDensity(new URLSearchParams(location.search).has('lowres') ? .5 : 1); noLoop();
   brush.scaleBrushes(5); defineBrushes();
   paperG = makePaper(); grainC = makeGrain(); letG = createGraphics(W, H); letG.pixelDensity(1);
   outC = document.getElementById('out'); outX = outC.getContext('2d');
-  await Promise.all([document.fonts.load('100px "Permanent Marker"'), document.fonts.load('800 50px "Shantell Sans"')]);
+  // SONG.fonts: extra [font, sample text] pairs to load first (the sample pulls in the glyphs a CJK web font needs).
+  await Promise.all([document.fonts.load('100px "Permanent Marker"'), document.fonts.load('800 50px "Shantell Sans"'),
+    ...(SONG.fonts || []).map(([f, txt]) => document.fonts.load(f, txt))]);
   window.ready = true;
   if (!location.search.includes('render')) devUI();
 }
