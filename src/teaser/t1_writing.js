@@ -17,7 +17,8 @@
     paint(rectPts(sx, sy, sw, sh, 1), { wash: TP.screenDk, fill: TP.screen, fillOp: 70, tex: .4, ink: null });
     const fs = sh * .075, bw = sw * .78, bx = sx + sw * .96 - bw, by = sy + sh * .12;
     paint(rrPts(bx, by, bw, fs * 3.2, fs * .7, 1), { wash: '#F6E6C8', ink: PAL.ink, sw: .8 });
-    for (let r = 0; r < 2; r++) inkLine([[bx + fs * .6, by + fs * (1.05 + r * 1.15)], [bx + bw * (r ? .5 : .88), by + fs * (1.05 + r * 1.15)]], 2.2, mixCol(PAL.ink, '#F6E6C8', .55), 'inkfine', 0);
+    letter('如果有一个人，是我最想遇见的样子', bx + fs * .6, by + fs * 1.05, fs * .9, PAL.ink, { font: BF(fs * .9), align: 'left', ink: false });
+    letter('……他会是什么样？', bx + fs * .6, by + fs * 2.2, fs * .9, PAL.ink, { font: BF(fs * .9), align: 'left', ink: false });
     const rb = sy + sh * .7;
     paint(rrPts(sx + sw * .06, rb, sw * .88, sh * .14, sh * .05, 1), { wash: '#EAF5F2', washOp: 235, ink: PAL.ink, sw: .7 });
     // his name, typed as an ink squiggle that grows a loop with every key

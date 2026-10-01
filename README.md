@@ -13,6 +13,25 @@ Source code for the [Claude Opus 5.5 music video for *I'm Upping My P(doom)*](ht
 
 Highly recommend checking it out!
 
+## 《如果你来过》 teaser
+
+A 91-second teaser for 《如果你来过》 by realsimson, made with the same p5.brush painting style, Clawd and Researcher. It has a new story: a young researcher who can't sleep writes an AI into being, and the memories they share turn out to be paintings of her own words.
+
+| Path | What it is |
+|---|---|
+| [`TEASER_STORYBOARD.md`](TEASER_STORYBOARD.md) | The shot-by-shot plan and the music edit |
+| [`teaser.html`](teaser.html) | The studio page for the teaser |
+| [`src/teaser/`](src/teaser/) | Its six chapters, shared sets and props (`kit.js`) and the timed lyrics |
+| [`assets/ruguo_teaser.mp3`](assets/ruguo_teaser.mp3) | The 91 s cut of the song |
+| [`assets/fonts/`](assets/fonts/) | Local fonts, including the Chinese brush font for the lyrics |
+
+```bash
+node render.mjs --page=teaser.html --frames=0:91.2 --workers=4   # paint every frame into out/frames_ruguo (resumable)
+node render.mjs --page=teaser.html --encode                       # join the frames and the audio into out/ruguo.mp4
+```
+
+Add `--lowres` to both commands for a quick half-resolution preview on a machine without a GPU.
+
 ## Credits
 
 - **Inspired by:** [this post on X](https://x.com/slimer48484/status/2097752569212756134)

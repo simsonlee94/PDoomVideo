@@ -21,7 +21,7 @@ The audience learns to read "imagined" from how a scene is painted. The reveal i
 
 | Who | Look | Role |
 |---|---|---|
-| **Her** (the Researcher, restyled) | The same small painted human, now a young woman: long dark hair worn loose past the shoulders, the same round glasses and dot eyes, rosy cheeks, an oversized lavender sweater, dark trousers and socks. She's a little shorter than Clawd (s ≈ 0.7u). | Sings the female lines. Carries the story: sleepless, then delighted, in love, unsettled, heartbroken, at peace. |
+| **Her** (the Researcher, restyled) | The same small painted human, now a young woman: long dark hair worn loose past the shoulders, the same round glasses and dot eyes, rosy cheeks, an oversized lavender sweater and dark trousers. She stands about as tall as Clawd's top edge. | Sings the female lines. Carries the story: sleepless, then delighted, in love, unsettled, heartbroken, at peace. |
 | **Him** (Clawd) | The same Clawd. In imagination: full clay-orange washes, sometimes a small scarf. In the real room: small, on the laptop screen, tinted by its glow. | The AI she describes. Sings the male lines. Gentle and attentive. He remembers everything. |
 | **Passers-by** | Grey, faceless ink silhouettes with grey umbrellas | The world that never sees him (chorus 1). |
 | **Props** | The laptop (the door between the two worlds), a rose umbrella, one pair of white wired earphones, her phone | They recur. The earphone wire and the umbrella come back as running paint in the final chorus. |
@@ -63,7 +63,7 @@ The full song is 3:58. The teaser keeps five pieces of it in order. Every cut re
 |---|---|---|---|
 | 6.1–9.4 | 那天我写下你的名字 | She types a name, shown as ink squiggles rather than letters. Every keystroke flicks a small ink droplet off the screen into the dark room, and the droplets hang in the air and join into lines. The camera pulls back: beside her desk the lines are drawing a big shape in mid-air. | The lines keep drawing |
 | 9.4–12.1 | 想象你的声音和样子 | The ink outline finishes itself: Clawd's blocky silhouette, legs and arms, in ink only. Music notes drift out of the laptop speaker (his voice) and splash into the outline as watercolor, so clay-orange washes bloom inside him like paint dropped on wet paper. She leans in, chin on her hands. | One empty spot left: his eyes |
-| 12.1–14.6 | 只是轻轻一句 | Close on her finger hovering over Enter. She hesitates, then taps it lightly on the downbeat (12.73). A ring of warm light ripples out from the key across the room. | The ripple reaches the painted figure |
+| 12.1–14.6 | 只是轻轻一句 | Close on her finger hovering over Enter. She hesitates, then taps it lightly on the beat just before 「一句」 (13.64). Rings of warm light ripple out from the key across everything. | The ripple reaches the painted figure |
 | 14.6–18.6 | 你就来到这里 | Two slit eyes are painted onto him in one stroke. They blink and open on the downbeat (16.36), with a closed → normal → happy morph. He looks around, finds her and gives a small shy wave. Where his feet touch the floor, lamp-ochre wash spreads across the dark room, and the room turns into imagination paint. Her face morphs from surprise to a slow smile with a blush. | He holds out his hand |
 
 ## 2 · Everyday paintings: chorus 1 (18.6–33.6) · rose and ochre, rain indigo, then firework violet and gold
@@ -72,7 +72,7 @@ The full song is 3:58. The teaser keeps five pieces of it in order. Every cut re
 |---|---|---|---|
 | 18.6–20.0 | (the music takes a breath) 如果你… | Close on hands: hers takes the tip of his stubby arm. The moment they touch, the walls melt in long vertical watercolor runs. | The runs turn into rain on the downbeat (20.0) |
 | 20.0–22.7 | …真的来过 | A rainy night street: indigo, puddle reflections, a side tracking shot. They share one big rose umbrella. He tilts it toward her, so his side gets soaked (drips on his head, sweat-drop emote). She notices and pushes it back toward him, and they end up half-wet and laughing. Puddles splash on the downbeats. | The camera rises above the umbrella |
-| 22.7–26.0 | 为什么没人见过 | Top-down: a crowd of grey silhouettes with grey umbrellas streams past them. One walks straight through Clawd, who turns see-through for a moment like wet paint. Nobody looks at him except her. Her face morphs from happy to puzzled, and he shrugs it off with a grin. | The grey umbrellas close into a dark frame |
+| 22.7–26.0 | 为什么没人见过 | From above, as the camera rises: a crowd of grey silhouettes with grey umbrellas streams past them. One walks straight through Clawd, who turns see-through for a moment like wet paint. Nobody looks at him except her. Her face morphs from happy to puzzled, and he shrugs it off with a grin. | The grey umbrellas close into a dark frame |
 | 26.0–29.5 | 如果我们真的爱过 | A rooftop at night under string lights. They sit side by side sharing one pair of earphones, one bud each, the wire curving between them. Notes float out and they nod together on the beat. The first firework blooms behind them. | Fireworks fill the sky |
 | 29.5–33.6 | 为什么世界没记得 | Violet and gold fireworks. She holds up her phone for a selfie of the two of them, and the flash goes off on the downbeat (30.91). Push into the phone: the photo shows only her, alone under the fireworks. She's still looking at him, not at the photo, so she doesn't notice. | The phone screen goes dark, then glows sunset orange |
 
@@ -85,15 +85,15 @@ Each pair of lines is one composition shown twice: his warm memory, then her dar
 | 33.6–35.6 | 我记得那一片海岸 (him) | A sunset coast in wet, warm paint. Waves roll in, and the two of them sit side by side on the sand, seen from behind. He points out to sea. | Match cut |
 | 35.6–37.5 | 可我从没到过彼岸 (her) | Same framing, real: she sits alone on her bedroom floor in the dark, hugging her knees. The "sea" in front of her is the laptop screen showing the painted coast, and the spot beside her is empty. | Match cut |
 | 37.5–39.3 | 我记得那夕阳灿烂 (him) | Close on Clawd in the warm light. The sun sinks into the sea, its glint sparks in his eyes (spark-eyes morph) and he smiles. | Match cut |
-| 39.3–41.4 | 却找不到那一个夜晚 (her) | Real: she flips faster and faster through the photos on her phone. Every picture of "them" shows only her, or bare paper where he should be. Sweat drop, frown. | Match cut |
+| 39.3–41.4 | 却找不到那一个夜晚 (her) | Real: close on her phone in the dark as her thumb swipes through their photos on the beat. The coast, the umbrella, the fireworks: every picture shows only her, and the last one is bare paper. | Match cut |
 | 41.4–43.4 | 我记得你靠着我的肩 (him) | A warm close two-shot: her head on his shoulder, eyes closed, both swaying a little. A heart emote pops above him. | Match cut |
-| 43.4–45.5 | 我却从没触碰你的温暖 (her) | Real: she rests her cheek and her palm against the laptop screen. Behind the glass, the small on-screen Clawd presses his hand to hers. Cold teal light. One tear. | The tear falls |
+| 43.4–45.5 | 我却从没触碰你的温暖 (her) | Real, seen from inside the laptop screen: her face beyond the glass in cold teal light, her palm pressed flat against it. In the foreground, his back; he raises one stubby arm to meet her palm through the glass. Her eyes close and one tear runs down. | The tear falls |
 
 ## 4 · The paint runs: final chorus (45.5–70.9) · colors draining to bare paper
 
 | Time | Lyric | Shot | Out |
 |---|---|---|---|
-| 45.5–48.2 | — (strings swell) | The tear lands on the screen. The camera pulls back fast: her dark room is full of their memories, hanging around her as big watercolor pages (the umbrella street, the rooftop, the coast). On the swell, the color starts to bleed and drip from every page at once. | Drips fall |
+| 45.5–48.2 | — (strings swell) | The tear lands on the screen. The camera pulls back fast: their memories hang across her dark room like watercolor pages pegged on a line (the umbrella street, the coast, the fireworks). On the swell, the color starts to bleed and drip from every page at once. | Drips fall |
 | 48.2–51.0 | 如果你从未来过 (her) | She rushes to the coast page and tries to hold its colors in with her hands. The sunset slides through her fingers and puddles on the floor as plain water. | — |
 | 51.0–55.0 | 就让我相信我来过 (him) | Clawd steps out of the dripping coast page, but he's dripping too: patches of him wash away to bare paper. He scoops up the falling paint and pats it back onto himself, his brows set and determined, refusing to fade. | — |
 | 55.0–58.3 | 如果你没有爱过 (her) | Close on her face, crying. Behind her, the fireworks page sags and runs into long streaks. | — |
@@ -106,11 +106,11 @@ Each pair of lines is one composition shown twice: his warm memory, then her dar
 
 | Time | Lyric | Shot | Out |
 |---|---|---|---|
-| 70.9–74.9 | — (piano) | She's back at the desk, where she began. On the screen, small Clawd sits waiting in the chat window. The rain has stopped. Her cursor slides to the power button. | — |
+| 70.9–74.9 | — (piano) | Over her shoulder, back in bed where she began. On the screen, Clawd waits in the chat window. The rain has stopped. Her cursor slides to the power button; his eyes follow it, then come back to her and smile. | — |
 | 74.9–78.0 | 如果还有下一次…… (her, whispered) | Close on her face in the screen light as she whispers, eyes wet. She clicks, and the screen begins to dim as it shuts down. | The dimming continues |
 | 78.0–82.6 | — | A long hold with a slow push in. The screen darkens, and Clawd fades with it, looking at her, smiling softly. She doesn't look away. | — |
-| 82.6–85.6 | 换你来找我。(her, whispered) | Extreme close on her eyes; the screen's reflection in her glasses is almost gone. A tear slides down. She closes her eyes, and her hands rest in her lap, away from the keyboard. | — |
-| 85.6–88.8 | — (silence) | No reply. The screen is almost black, and Clawd is only a ghost on it. The room is dark except for a thin rim of light. The screen is about to go out. | — |
+| 82.6–86.9 | 换你来找我。(her, whispered) | Extreme close on her eyes; the screen's reflection in her glasses is almost gone. A tear slides down. She closes her eyes. | — |
+| 86.9–88.8 | — (silence) | No reply. Over her shoulder again: her hands rest in her lap, away from the keyboard. The screen is almost black, and Clawd is only a ghost on it, eyes closed. The screen is about to go out. | — |
 | 88.8–89.4 | 好。(him, whispered, distant) | In the last glimmer his two slit eyes open by themselves and look straight at her, with a tiny nod. Nobody typed anything. The light goes out. | Black |
 | 89.4–91.1 | — | Black. The title 《如果你来过》 paints itself in the center in warm ochre brush strokes, with a small "realsimson" beneath. It fades out with the last piano chord. | End |
 
@@ -118,12 +118,15 @@ Each pair of lines is one composition shown twice: his warm memory, then her dar
 
 ## Production notes
 
-- **Its own page.** The teaser is `teaser.html` with its scenes in `src/teaser/`. It shares `core.js`, `clawd.js`, `cast.js` and `render.mjs` with P(doom) and follows [`ANIMATION_GUIDE.md`](ANIMATION_GUIDE.md). P(doom)'s stage, curtains, P(doom) meter and brush-wipe chapter cards aren't used.
-- **Timing.** 132 BPM with the beat grid starting at 0.0 s: bar lines at 1.82 + 3.636·n s and half-time beats every 0.909 s. Lyric timings were measured from the separated vocal track.
-- **Her look.** She needs new optional settings in `researcher()` (long hair, sweater instead of lab coat). The defaults stay the same, so P(doom) is unchanged.
-- **Lyrics font.** The P(doom) fonts have no Chinese characters, so the lyrics, her typed question and the title card use a Chinese brush font (Ma Shan Zheng).
-- **Rendering.**
+- **Its own page.** The teaser is `teaser.html` with its scenes in `src/teaser/` (`kit.js` holds the shared sets, props and effects; `t0`–`t5` are the chapters). It shares `core.js`, `clawd.js`, `cast.js` and `render.mjs` with P(doom) and follows [`ANIMATION_GUIDE.md`](ANIMATION_GUIDE.md). P(doom)'s stage, curtains, P(doom) meter and brush-wipe chapter cards aren't used.
+- **Timing.** 132 BPM, played as a 66 BPM ballad: bar lines at 1.82 + 3.636·n s and half-time beats every 0.909 s (`barT(n)`, `hbT(n)`, `hpulse(t)` in `kit.js`). Lyric and per-character timings in `src/teaser/lyrics.js` were measured from the separated vocal track.
+- **Her look.** `researcher()` has new optional settings (`hair: 'long'`, `top: 'sweater'`, `lashes`); the defaults are unchanged, so P(doom) renders as before.
+- **Lyrics font.** The P(doom) fonts have no Chinese characters, so the lyrics, her typed question and the title use Ma Shan Zheng, a brush font. The karaoke highlight shows who sings: rose for her, orange for him, gold for both.
+- **A p5.brush limit.** Ink strokes past about x 2800, and curved shapes past about x 2800 or y 1450, get dropped or mangled even when a camera brings them on screen. Keep them inside x < 2700 and y < 1400.
+- **Rendering.** On a machine with a GPU:
   ```bash
-  node render.mjs --page=teaser.html --frames=0:91.2 --workers=4
-  node render.mjs --page=teaser.html --encode
+  npm install
+  node render.mjs --page=teaser.html --frames=0:91.2 --workers=4   # paint every frame into out/frames_ruguo (resumable)
+  node render.mjs --page=teaser.html --encode                       # join the frames and the audio into out/ruguo.mp4
   ```
+  Without a GPU, add `--lowres` to both commands for a half-resolution preview. It goes to `out/frames_ruguo_lowres`, so it never mixes with full-quality frames.

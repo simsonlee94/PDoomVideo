@@ -76,7 +76,7 @@ function dreamEdge(k, seed = 0, t = T) {
     inkLine([a, b], .6 * k, c, 'HB', 0);
 }
 // Warm light pool (lamps, sunsets, his glow) and cold screen light.
-function glow(x, y, rx, ry, col, op = 80) { paint(ellPts(x, y, rx, ry, 24, rx * .05), { fill: col, fillOp: op, bleed: .3, tex: .3, border: .15, ink: null }); }
+function glow(x, y, rx, ry, col, op = 80) { if (op < 1 || rx < 1 || ry < 1) return; paint(ellPts(x, y, rx, ry, 24, rx * .05), { fill: col, fillOp: op, bleed: .3, tex: .3, border: .15, ink: null }); }
 // Rain streaks inside a box. Pure function of t: each drop falls through the box and wraps.
 function rainIn(t, x0, y0, w, h, n, col, o = {}) {
   const len = o.len || 46, sp = o.speed || 1500, ang = o.ang ?? .12, sw = o.sw || .55;

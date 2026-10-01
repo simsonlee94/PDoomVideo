@@ -2,7 +2,7 @@
 //   node render.mjs --sheet=23,23.5,24 [--cols=3] [--w=640] --out=out/check.jpg   contact sheet (fast visual check)
 //   node render.mjs --stills=0.8,3,23.8 --out=out/test                          full-res PNG stills
 //   node render.mjs --clip=0:6 --fps=24 --out=out/test.mp4                      short clip with audio
-//   node render.mjs --frames=0:156.6 --workers=4                                full-res JPEG frames → out/frames (resumable)
+//   node render.mjs --frames=0:156.6 --workers=4 [--step=2]                     full-res JPEG frames → out/frames (resumable)
 //   node render.mjs --encode [--out=out/pdoom.mp4]                               frames + song → MP4
 //   Every mode takes --page=<file>.html; the page's inline window.SONG gives the length, soundtrack and frames folder.
 //   --lowres paints at half resolution for quick previews on machines without a GPU.
@@ -22,7 +22,7 @@ const CHROME = args.chrome || process.env.CHROME || (WIN ? 'C:/Program Files/Goo
 const PAGE = args.page || 'studio.html';
 const SONG = (() => { const m = readFileSync(PAGE, 'utf8').match(/<script>([^<]*window\.SONG\s*=[^<]*)<\/script>/), w = {}; if (m) new Function('window', m[1])(w); return w.SONG || {}; })();
 const NAME = SONG.name || 'pdoom', DUR = SONG.dur ?? 156.6, AUDIO = SONG.audio || 'assets/pdoom.mp3', fps = +(args.fps || 24);
-const FRAMES_DIR = NAME === 'pdoom' ? 'out/frames' : `out/frames_${NAME}`;
+const FRAMES_DIR = (NAME === 'pdoom' ? 'out/frames' : `out/frames_${NAME}`) + (args.lowres ? '_lowres' : '');
 
 const run = (cmd, a) => new Promise((ok, bad) => { const p = spawn(cmd, a, { stdio: 'inherit' }); p.on('close', c => c ? bad(new Error(cmd + ' exited ' + c)) : ok()); });
 
@@ -87,8 +87,9 @@ if (args.sheet) {
   const [a, b] = String(args.frames).split(':').map(Number), workers = +(args.workers || 4);
   mkdirSync(FRAMES_DIR, { recursive: true });
   const first = Math.round(a * fps), last = Math.min(Math.ceil(DUR * fps) - 1, Math.round(b * fps) - 1);
-  const todo = []; for (let i = first; i <= last; i++) { const f = `${FRAMES_DIR}/f${String(i).padStart(5, '0')}.jpg`; if (!existsSync(f) || statSync(f).size < 1000) todo.push(i); }
-  console.log(`${todo.length} frames to render (${last - first + 1 - todo.length} already done), ${workers} workers`);
+  const step = +(args.step || 1);                       // --step=2 renders every other frame first (a quick 12 fps pass)
+  const todo = []; for (let i = first; i <= last; i += step) { const f = `${FRAMES_DIR}/f${String(i).padStart(5, '0')}.jpg`; if (!existsSync(f) || statSync(f).size < 1000) todo.push(i); }
+  console.log(`${todo.length} frames to render (${Math.floor((last - first) / step) + 1 - todo.length} already done), ${workers} workers`);
   let next = 0, done = 0; const start = Date.now();
   const work = async w => {
     const page = await openPage('#' + w);
