@@ -172,7 +172,8 @@
     camBegin(kf(t, [[29.5, 960], [31.4, 950]]), 610, kf(t, [[29.5, 1.75], [31.4, 1.9]]));
     rooftopSet(t);
     const up = easeOut(seg(t, 29.6, 30.2)), lean = ease(seg(t, 29.9, 30.5));
-    couple(t, { her: { aR: lerp(-.9, 1.0, up), aL: -1.1, rot: lean * .12, eyes: 'closed', mouth: 'grin', handR: (s, sw) => { push(); rotate(-1.0); paint(rrPts(-1.1 * s, -4.2 * s, 2.4 * s, 4.2 * s, .5 * s, 1), { wash: '#3A3C58', fill: TP.glow, fillOp: 50, ink: PAL.ink, sw: sw * .7 }); pop(); } },
+    // the phone goes up in her outer hand, away from him, so it isn't hidden behind his body
+    couple(t, { her: { aL: lerp(-1.1, .5, up), aR: -.9, rot: lean * .12, eyes: 'closed', mouth: 'grin', handL: (s, sw) => { push(); rotate(-1.0); paint(rrPts(-1.2 * s, -4.6 * s, 2.6 * s, 4.6 * s, .5 * s, 1), { wash: '#3A3C58', fill: TP.glow, fillOp: 50, ink: PAL.ink, sw: sw * .7 }); pop(); } },
       him: { rot: -lean * .1, dy: -.1 * lean, eyes: t > 30.9 && t < 31.1 ? 'closed' : 'happy', mouth: 'grin', aL: lerp(-.2, .9, lean) } });
     camEnd();
     flash(Math.exp(-Math.max(0, t - barT(8)) * 6) * (t >= barT(8) ? 1 : 0), '#FFF8EC');
